@@ -16,6 +16,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+});
 
 app.UseAuthorization();
 
