@@ -19,10 +19,14 @@ namespace CoreStartApp
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Console.WriteLine($"Launching project from: {env.ContentRootPath}");
+
             if (env.IsDevelopment() || env.IsStaging())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -42,6 +46,7 @@ namespace CoreStartApp
             });
 
             app.UseMiddleware<LoggingMiddleware>();
+            app.UseStatusCodePages();
 
             app.UseEndpoints(
                                 endpoints => endpoints.MapGet("/", async context => {
