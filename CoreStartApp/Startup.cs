@@ -37,6 +37,18 @@ namespace CoreStartApp
                                                  )
 
                 );
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGet("/config", async context =>
+                {
+                    await context.Response.WriteAsync($"App name: {env.ApplicationName}. App running configuration: {env.EnvironmentName}");
+                });
+            });
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync($"Welcome to the {env.ApplicationName}!");
+            });
         }
 
     }
