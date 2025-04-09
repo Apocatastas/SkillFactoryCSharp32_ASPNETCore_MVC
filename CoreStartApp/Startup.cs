@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CoreStartApp.Middlewares;
+using Microsoft.AspNetCore.Builder;
 
 
 namespace CoreStartApp
@@ -40,13 +41,7 @@ namespace CoreStartApp
                 await next.Invoke();
             });
 
-
-            app.Use(async (context, next) =>
-            {
-                // Для логирования данных о запросе используем свойства объекта HttpContext
-                Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
-                await next.Invoke();
-            });
+            app.UseMiddleware<LoggingMiddleware>();
 
             app.UseEndpoints(
                                 endpoints => endpoints.MapGet("/", async context => {
