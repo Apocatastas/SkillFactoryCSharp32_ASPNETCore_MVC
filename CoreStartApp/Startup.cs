@@ -4,6 +4,13 @@ namespace CoreStartApp
 {
     public class Startup
     {
+        IWebHostEnvironment _env;
+
+        public Startup(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
         }
