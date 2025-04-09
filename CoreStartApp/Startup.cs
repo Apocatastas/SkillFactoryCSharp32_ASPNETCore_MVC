@@ -30,6 +30,13 @@ namespace CoreStartApp
                                                              )
 
                             );
+            app.UseEndpoints(
+                    endpoints => endpoints.MapGet("/about", async context => {
+                        await context.Response.WriteAsync($"Welcome to the {env.ApplicationName}!");
+                    }
+                                                 )
+
+                );
         }
 
     }
